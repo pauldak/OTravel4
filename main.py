@@ -91,6 +91,7 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += hyper_example
     user_message += ("Generate a CSV file with the above table, "
                      "including the link to the Google maps")
+    st.write(user_message)
 
     # write the prompt to the Clipboard
     pyperclip.copy(user_message)
@@ -155,3 +156,4 @@ with left_col:
                 map_placeholder.markdown(google_maps_embed, unsafe_allow_html=True)
             generate_itinerary(start_place, end_place, must_see, max_km, budget,
                                num_days, start_date, selected_pois, selected_accommodation)
+
