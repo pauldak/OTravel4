@@ -1,4 +1,4 @@
-import pyperclip
+import clipboard
 
 import streamlit as st
 from trymap import generate_google_maps_embed
@@ -94,7 +94,7 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     st.write(user_message)
 
     # write the prompt to the Clipboard
-    pyperclip.copy(user_message)
+    clipboard.copy(user_message)
 
 
 left_col, mid_col, right_col = st.columns([6, 1, 2])
