@@ -1,11 +1,19 @@
-import clippy
+
 
 import streamlit as st
 from trymap import generate_google_maps_embed
 
 st.set_page_config(layout="wide")
 
-
+def copy_to_clipboard(text):
+    js = f"""
+    navigator.clipboard.writeText('{text}').then(() => {{
+      st.experimental_rerun();  // Refresh the app to display success message
+    }}, () => {{
+      console.error('Failed to copy text: ', error);
+    }});
+    """
+    st.write(js, unsafe_allow_html=True)
 def generate_itinerary(start_place, end_place, must_see, max_km, budget,
                        num_days, start_date, selected_pois, selected_accommodation):
     # Validate
@@ -95,9 +103,9 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     st.write("-------------ZZZZZZ------------------")
 
     # write the prompt to the Clipboard
-    clippy.copy(user_message)
-
-
+    if st.button("Copy to Clipboard"):
+        copy_to_clipboard(user_message)
+        st.success("Text copied successfully!")
 left_col, mid_col, right_col = st.columns([6, 1, 2])
 
 # with main_col:
@@ -157,4 +165,3 @@ with left_col:
                 map_placeholder.markdown(google_maps_embed, unsafe_allow_html=True)
             generate_itinerary(start_place, end_place, must_see, max_km, budget,
                                num_days, start_date, selected_pois, selected_accommodation)
-
