@@ -105,7 +105,8 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     # write the prompt to the Clipboard
     if st.button("Copy to Clipboard"):
         copy_to_clipboard(user_message)
-        st.success("Text copied successfully!")
+        st.write("Text copied successfully!")
+
 left_col, mid_col, right_col = st.columns([6, 1, 2])
 
 # with main_col:
