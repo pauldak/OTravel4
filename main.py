@@ -92,6 +92,7 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += (" \n- Generate a CSV file with the above table, "
                      "including the link to the Google maps")
     st.write(user_message)
+    st.write("-------------------------------")
 
     # write the prompt to the Clipboard
     clipboard.copy(user_message)
