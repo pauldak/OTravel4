@@ -102,13 +102,7 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     prompt = user_message
     st.write(prompt)
     st.write("-------------ZZZZZZ------------------")
-
-    # write the prompt to the Clipboard
-    if st.button("Copy to Clipboard"):
-        with st.spinner("Copying to clipboard..."):
-            copy_to_clipboard(prompt)
-        st.success("Text copied successfully!")
-    st.button("When you go back to the GPT paste the prompt (Ctrl-v)")
+    return prompt
 
 
 left_col, mid_col, right_col = st.columns([6, 1, 2])
@@ -168,5 +162,12 @@ with left_col:
             google_maps_embed = generate_google_maps_embed(start_place, end_place)
             with right_col:
                 map_placeholder.markdown(google_maps_embed, unsafe_allow_html=True)
-            generate_itinerary(start_place, end_place, must_see, max_km, budget,
+            prompt = generate_itinerary(start_place, end_place, must_see, max_km, budget,
                                num_days, start_date, selected_pois, selected_accommodation)
+
+            # write the prompt to the Clipboard
+            if st.button("Copy to Clipboard"):
+                with st.spinner("Copying to clipboard..."):
+                    copy_to_clipboard(prompt)
+                st.success("Text copied successfully!")
+            # st.button("When you go back to the GPT paste the prompt (Ctrl-v)")
