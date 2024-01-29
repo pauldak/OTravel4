@@ -1,5 +1,4 @@
 
-
 import streamlit as st
 from trymap import generate_google_maps_embed
 
@@ -167,7 +166,8 @@ with left_col:
 
             # write the prompt to the Clipboard
             if st.button("Copy to Clipboard"):
-                with st.spinner("Copying to clipboard..."):
-                    copy_to_clipboard(prompt)
-                st.success("Text copied successfully!")
+                # with st.spinner("Copying to clipboard..."):
+                copy_to_clipboard(prompt)
+
+                # st.success("Text copied successfully!")
             # st.button("When you go back to the GPT paste the prompt (Ctrl-v)")
