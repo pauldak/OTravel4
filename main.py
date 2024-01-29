@@ -1,4 +1,4 @@
-import clipboard
+import clippy
 
 import streamlit as st
 from trymap import generate_google_maps_embed
@@ -92,10 +92,10 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += (" \n- Generate a CSV file with the above table, "
                      "including the link to the Google maps")
     st.write(user_message)
-    st.write("-------------------------------")
+    st.write("-------------ZZZZZZ------------------")
 
     # write the prompt to the Clipboard
-    clipboard.copy(user_message)
+    clippy.copy(user_message)
 
 
 left_col, mid_col, right_col = st.columns([6, 1, 2])
