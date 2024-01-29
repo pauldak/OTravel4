@@ -99,14 +99,17 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
     user_message += hyper_example
     user_message += (" \n- Generate a CSV file with the above table, "
                      "including the link to the Google maps")
-    st.write(user_message)
+    prompt = user_message
+    st.write(prompt)
     st.write("-------------ZZZZZZ------------------")
 
     # write the prompt to the Clipboard
     if st.button("Copy to Clipboard"):
-        copy_to_clipboard(user_message)
-        # st.write("Text copied successfully!")
-        st.button("When you go back to the GPT paste the prompt (Ctrl-v)")
+        with st.spinner("Copying to clipboard..."):
+            copy_to_clipboard(prompt)
+        st.success("Text copied successfully!")
+    st.button("When you go back to the GPT paste the prompt (Ctrl-v)")
+
 
 left_col, mid_col, right_col = st.columns([6, 1, 2])
 
