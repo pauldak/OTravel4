@@ -89,7 +89,7 @@ def generate_itinerary(start_place, end_place, must_see, max_km, budget,
                      "So the link will be, for instance:")
     hyper_example = f'=HYPERLINK("https://www.google.com/maps/dir/Paris+France/Fontainebleau+France)"'
     user_message += hyper_example
-    user_message += (" \n Generate a CSV file with the above table, "
+    user_message += (" \n- Generate a CSV file with the above table, "
                      "including the link to the Google maps")
     st.write(user_message)
 
