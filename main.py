@@ -168,5 +168,16 @@ with left_col:
         import os
 
         # def write_to_clipboard(text):
-        command = 'echo ' + prompt.strip() + '| clip'
-        os.system(command)
+    import sys
+    from PyQt5.QtWidgets import QApplication
+    from PyQt5.QtGui import QGuiApplication
+
+    # Create a QApplication instance
+    app = QApplication(sys.argv)
+
+    # Set the text to be copied to the clipboard
+
+    clipboard = QGuiApplication.clipboard()
+    clipboard.setText(prompt)
+
+
