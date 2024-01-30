@@ -176,8 +176,14 @@ with left_col:
     app = QApplication(sys.argv)
 
     # Set the text to be copied to the clipboard
-
+    
     clipboard = QGuiApplication.clipboard()
     clipboard.setText(prompt)
+
+    # Copy the text to the clipboard
+    clipboard.copy()
+
+    # Exit the application
+    QApplication.quit()
 
 
