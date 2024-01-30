@@ -176,6 +176,5 @@ with left_col:
             prompt = generate_itinerary(start_place, end_place, must_see, max_km, budget,
                                num_days, start_date, selected_pois, selected_accommodation)
 
-# write the prompt to the Clipboard
-
-    generate_copy_button(prompt)
+            # write the prompt to the Clipboard
+            generate_copy_button(prompt)
