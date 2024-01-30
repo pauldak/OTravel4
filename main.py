@@ -164,26 +164,20 @@ with left_col:
             prompt = generate_itinerary(start_place, end_place, must_see, max_km, budget,
                                num_days, start_date, selected_pois, selected_accommodation)
 
-            # write the prompt to the Clipboard
-        import os
+# write the prompt to the Clipboard
 
-        # def write_to_clipboard(text):
-    import sys
-    from PyQt5.QtWidgets import QApplication
-    from PyQt5.QtGui import QGuiApplication
-
-    # Create a QApplication instance
-    app = QApplication(sys.argv)
-
-    # Set the text to be copied to the clipboard
-
-    clipboard = QGuiApplication.clipboard()
-    clipboard.setText(prompt)
-
-    # Copy the text to the clipboard
-    clipboard.copy()
-
-    # Exit the application
-    QApplication.quit()
-
+    # Button to copy text
+    if st.button('Copy text to clipboard'):
+        # JavaScript to copy text
+        js = f"""
+        <script>
+        navigator.clipboard.writeText('{prompt}').then(function() {{
+          console.log('Text copied to clipboard');
+        }}, function(err) {{
+          console.error('Could not copy text: ', err);
+        }});
+        </script>
+        """
+        # Display the JavaScript
+        st.markdown(js, unsafe_allow_html=True)
 
