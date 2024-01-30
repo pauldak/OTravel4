@@ -1,7 +1,9 @@
 
 import streamlit as st
 from trymap import generate_google_maps_embed
-import subprocess
+import sys
+from PyQt5.QtWidgets import QApplication
+from PyQt5.Qt import QClipboard
 
 st.set_page_config(layout="wide")
 
@@ -166,5 +168,6 @@ with left_col:
                                num_days, start_date, selected_pois, selected_accommodation)
 
             # write the prompt to the Clipboard
-        p = subprocess.Popen(['xclip', '-selection', 'clipboard'], stdin=subprocess.PIPE)
-        p.communicate(input=prompt.encode())
+        app = QApplication(sys.argv)
+        clip = app.clipboard()
+        clip.setText(prompt)
