@@ -165,10 +165,13 @@ with left_col:
                                num_days, start_date, selected_pois, selected_accommodation)
 
             # write the prompt to the Clipboard
+        import PyQt5
         from PyQt5.Qt import *
+        from PyQt5.Qt import QApplication
 
         # Create QApplication
         app = QApplication([])
+
 
         # Get clipboard
         clipboard = QClipboard()
