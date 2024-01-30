@@ -165,9 +165,8 @@ with left_col:
                                num_days, start_date, selected_pois, selected_accommodation)
 
             # write the prompt to the Clipboard
-        import win32clipboard
+        import os
 
-        win32clipboard.OpenClipboard()
-        win32clipboard.EmptyClipboard()
-        win32clipboard.SetClipboardText(prompt)
-        win32clipboard.CloseClipboard()
+        # def write_to_clipboard(text):
+        command = 'echo ' + prompt.strip() + '| clip'
+        os.system(command)
