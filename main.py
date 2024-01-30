@@ -165,8 +165,8 @@ with left_col:
                                num_days, start_date, selected_pois, selected_accommodation)
 
             # write the prompt to the Clipboard
-        # import os
+        import os
 
         # def write_to_clipboard(text):
-        # command = 'echo ' + prompt.strip() + '| clip'
-        # os.system(command)
+        command = 'echo ' + prompt.strip() + '| clip'
+        os.system(command)
