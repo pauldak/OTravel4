@@ -2,6 +2,7 @@
 import streamlit as st
 from trymap import generate_google_maps_embed
 
+
 st.set_page_config(layout="wide")
 
 def copy_to_clipboard(text):
@@ -166,18 +167,30 @@ with left_col:
 
 # write the prompt to the Clipboard
 
-    # Button to copy text
-    if st.button('Copy text to clipboard'):
-        # JavaScript to copy text
-        js = f"""
-        <script>
-        navigator.clipboard.writeText('{prompt}').then(function() {{
-          console.log('Text copied to clipboard');
-        }}, function(err) {{
-          console.error('Could not copy text: ', err);
-        }});
-        </script>
+
+    # Function to generate the clipboard copy script
+    import uuid  # Import the uuid module
+
+
+    # Function to generate the clipboard copy script
+    def generate_copy_button(text_to_copy):
+        button_uuid = str(uuid.uuid4()).replace('-', '')
+        button_id = f'button_{button_uuid}'
+        script = f"""
+            <script>
+            function copyToClipboard{button_uuid}() {{
+                const el = document.createElement('textarea');
+                el.value = `{text_to_copy}`;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+            }}
+            </script>
+            <button id="{button_id}" onclick="copyToClipboard{button_uuid}()">Copy to Clipboard</button>
         """
-        # Display the JavaScript
-        st.markdown(js, unsafe_allow_html=True)
+        st.markdown(script, unsafe_allow_html=True)
+
+    generate_copy_button(prompt)
+
 
