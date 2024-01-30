@@ -165,9 +165,9 @@ with left_col:
                                num_days, start_date, selected_pois, selected_accommodation)
 
             # write the prompt to the Clipboard
-            if st.button("Copy to Clipboard"):
+            # if st.button("Copy to Clipboard"):
                 # with st.spinner("Copying to clipboard..."):
-                copy_to_clipboard(prompt)
+            copy_to_clipboard(prompt)
 
                 # st.success("Text copied successfully!")
             # st.button("When you go back to the GPT paste the prompt (Ctrl-v)")
