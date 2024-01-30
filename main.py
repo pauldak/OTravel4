@@ -2,6 +2,26 @@
 import streamlit as st
 from trymap import generate_google_maps_embed
 
+# Function to generate the clipboard copy script
+import uuid  # Import the uuid module
+
+def generate_copy_button(text_to_copy):
+    button_uuid = str(uuid.uuid4()).replace('-', '')
+    button_id = f'button_{button_uuid}'
+    script = f"""
+          <script>
+          function copyToClipboard{button_uuid}() {{
+              const el = document.createElement('textarea');
+              el.value = `{text_to_copy}`;
+              document.body.appendChild(el);
+              el.select();
+              document.execCommand('copy');
+              document.body.removeChild(el);
+          }}
+          </script>
+          <button id="{button_id}" onclick="copyToClipboard{button_uuid}()">Copy to Clipboard</button>
+      """
+    st.markdown(script, unsafe_allow_html=True)
 
 st.set_page_config(layout="wide")
 
@@ -166,30 +186,6 @@ with left_col:
                                num_days, start_date, selected_pois, selected_accommodation)
 
 # write the prompt to the Clipboard
-
-
-    # Function to generate the clipboard copy script
-    import uuid  # Import the uuid module
-
-
-    # Function to generate the clipboard copy script
-    def generate_copy_button(text_to_copy):
-        button_uuid = str(uuid.uuid4()).replace('-', '')
-        button_id = f'button_{button_uuid}'
-        script = f"""
-            <script>
-            function copyToClipboard{button_uuid}() {{
-                const el = document.createElement('textarea');
-                el.value = `{text_to_copy}`;
-                document.body.appendChild(el);
-                el.select();
-                document.execCommand('copy');
-                document.body.removeChild(el);
-            }}
-            </script>
-            <button id="{button_id}" onclick="copyToClipboard{button_uuid}()">Copy to Clipboard</button>
-        """
-        st.markdown(script, unsafe_allow_html=True)
 
     generate_copy_button(prompt)
 
