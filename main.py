@@ -167,7 +167,7 @@ with left_col:
             # write the prompt to the Clipboard
         import PyQt5
         from PyQt5.Qt import *
-        from PyQt5.Qt import QApplication
+        from PyQt5.QtWidgets import QApplication
 
         # Create QApplication
         app = QApplication([])
