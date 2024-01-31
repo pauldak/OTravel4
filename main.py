@@ -164,9 +164,9 @@ with left_col:
 import pandas as pd
 
 
-st.title("Copy to Clipboard Example")
+st.title("Copy to Clipboard")
 
-
+prompt = " Testing "
 
 # Create a button to copy the string variable to the clipboard
 if st.button("Copy to Clipboard"):
