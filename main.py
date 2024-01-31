@@ -5,26 +5,9 @@ from trymap import generate_google_maps_embed
 # Function to generate the clipboard copy script
 
 
-def generate_copy_button(text_to_copy):
-    # The button and script tag
-    button_html = f"""
-    <button onclick="navigator.clipboard.writeText('{text_to_copy}')">Copy to Clipboard</button>
-    """
-    st.markdown(button_html, unsafe_allow_html=True)
-
-
 st.set_page_config(layout="wide")
 
 
-def copy_to_clipboard(text):
-    js = f"""
-    navigator.clipboard.writeText('{text}').then(() => {{
-      st.experimental_rerun();  // Refresh the app to display success message
-    }}, () => {{
-      console.error('Failed to copy text: ', error);
-    }});
-    """
-    st.write(js, unsafe_allow_html=True)
 def generate_itinerary(start_place, end_place, must_see, max_km, budget,
                        num_days, start_date, selected_pois, selected_accommodation):
     # Validate
@@ -177,4 +160,16 @@ with left_col:
                                num_days, start_date, selected_pois, selected_accommodation)
 
             # write the prompt to the Clipboard
-            generate_copy_button(prompt)
+
+import pandas as pd
+
+
+st.title("Copy to Clipboard Example")
+
+
+
+# Create a button to copy the string variable to the clipboard
+if st.button("Copy to Clipboard"):
+    df = pd.DataFrame([prompt])
+    df.to_clipboard(index=False, header=False)
+    st.write("Copied to clipboard!")
