@@ -3,7 +3,7 @@ import streamlit as st
 import clipboard
 
 def on_copy_click(text):
-    # st.session_state.copied.append(text)
+    st.session_state.copied.append(text)
     clipboard.copy(text)
 
 st.set_page_config(layout="wide")
