@@ -1,12 +1,10 @@
 
 import streamlit as st
-import base64
-from streamlit.components.v1 import html
+import clipboard
 
-# import wx
-
-# Function to generate the clipboard copy script
-
+def on_copy_click(text):
+    # st.session_state.copied.append(text)
+    clipboard.copy(text)
 
 st.set_page_config(layout="wide")
 
@@ -149,27 +147,15 @@ with left_col:
 
     terms_checkbox = st.checkbox("I agree to the terms and conditions")
 
+
+
     if st.button("Enter Data"):
         with st.spinner("Please wait..."):
-            # generate a map from start_place to end_place
-            # Empty placeholder in mid-column
-            with mid_col:
-                map_placeholder = st.empty()
-
             prompt = generate_itinerary(start_place, end_place, must_see, max_km, budget,
-                               num_days, start_date, selected_pois, selected_accommodation)
+                                              num_days, start_date, selected_pois, selected_accommodation)
             # st.write(prompt)
 
-
-            # Create a button to copy the text to the clipboard
-            if st.button("Copy to Clipboard"):
-                # Encode the text as bytes
-                text_bytes = prompt.encode("utf-8")
-                # Create a base64-encoded data URL
-                data_url = f"data:text/plain;base64,{base64.b64encode(text_bytes).decode('utf-8')}"
-                # Create an HTML element with the data URL
-                html_element = html(f"<a href='{data_url}' download='text.txt' id='download-link'></a>", unsafe_allow_html=True)
-                # Add the HTML element to the Streamlit page
-                st.markdown(html_element, unsafe_allow_html=True)
-                # Click the HTML element to download the text
-                html_element._events["click"] = True
+            message_placeholder = st.empty()
+            message_placeholder.markdown(prompt)
+            st.session_state.messages.append({"role": "assistant", "content": prompt})
+            st.button("📋", on_click=on_copy_click, args=(prompt,))
