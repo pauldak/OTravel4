@@ -150,17 +150,23 @@ with left_col:
                                               num_days, start_date, selected_pois, selected_accommodation)
             # st.write(prompt)
 
+            # Button to trigger the copy action
             if st.button('Copy text to clipboard'):
-                # JavaScript to copy the text
-                js = f"""<script>
-                navigator.clipboard.writeText('{prompt}').then(function() {{
-                    /* Clipboard successfully set */
-                    alert('Text copied to clipboard');
-                }}, function() {{
-                    /* Clipboard write failed */
-                    alert('Failed to copy text to clipboard');
-                }});
-                </script>"""
+                # JavaScript to copy the variable text
+                js = f"""
+                <textarea id="textToCopy" style="position: absolute; left: -1000px; top: -1000px;">{prompt}</textarea>
+                <script>
+                var copyText = document.getElementById("textToCopy");
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+                /* Copy the text inside the text field */
+                document.execCommand("copy");
+
+                /* Alert the copied text */
+                alert("Copied the text: " + copyText.value);
+                </script>
+                """
 
                 # Render the JavaScript
                 st.markdown(js, unsafe_allow_html=True)
