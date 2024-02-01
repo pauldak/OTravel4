@@ -4,9 +4,9 @@ if st.button('Click to copy "Hello, World!" to clipboard'):
     js_script = """
     <script defer>
     navigator.clipboard.writeText('Hello, World!').then(function() {
-      alert('Text copied successfully!');
+      st.success('Text copied successfully!');
     }, function(err) {
-      console.error('Could not copy text: ', err);
+      st.error('Failed to copy text: ' + err);
     });
     </script>
     """
