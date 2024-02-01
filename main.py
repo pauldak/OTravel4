@@ -1,6 +1,7 @@
 
 import streamlit as st
 from trymap import generate_google_maps_embed
+import wx
 
 # Function to generate the clipboard copy script
 
@@ -161,15 +162,11 @@ with left_col:
 
             # write the prompt to the Clipboard
 
-import pandas as pd
 
 
-st.title("Copy to Clipboard")
-
-prompt = " Testing "
-
-# Create a button to copy the string variable to the clipboard
-if st.button("Copy to Clipboard"):
-    df = pd.DataFrame([prompt])
-    df.to_clipboard(index=False, header=False)
-    st.write("Copied to clipboard!")
+# Open the clipboard
+if wx.TheClipboard.Open():
+    # Set the data object to the clipboard
+    wx.TheClipboard.SetData(wx.TextDataObject(prompt))
+    # Close the clipboard
+    wx.TheClipboard.Close()
