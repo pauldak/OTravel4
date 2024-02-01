@@ -1,5 +1,7 @@
 
 import streamlit as st
+import base64
+from streamlit.components.v1 import html
 
 # import wx
 
@@ -160,9 +162,15 @@ with left_col:
 
             # write the prompt to the Clipboard
 
-# Open the clipboard
-# if wx.TheClipboard.Open():
-    # Set the data object to the clipboard
-#    wx.TheClipboard.SetData(wx.TextDataObject(prompt))
-    # Close the clipboard
-#    wx.TheClipboard.Close()
+# Create a button to copy the text to the clipboard
+if st.button("Copy to Clipboard"):
+    # Encode the text as bytes
+    text_bytes = prompt.encode("utf-8")
+    # Create a base64-encoded data URL
+    data_url = f"data:text/plain;base64,{base64.b64encode(text_bytes).decode('utf-8')}"
+    # Create an HTML element with the data URL
+    html_element = html(f"<a href='{data_url}' download='text.txt' id='download-link'></a>", unsafe_allow_html=True)
+    # Add the HTML element to the Streamlit page
+    st.markdown(html_element, unsafe_allow_html=True)
+    # Click the HTML element to download the text
+    html_element._events["click"] = True
