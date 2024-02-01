@@ -11,5 +11,5 @@ if st.button('Click to copy "Hello, World!" to clipboard'):
     console.error('Could not copy text: ', err);
     });
     """
-# Display the JavaScript
-st.code(js_script, language='javascript')
+    # Display the JavaScript
+    st.code(js_script, language='javascript')
