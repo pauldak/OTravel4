@@ -157,12 +157,11 @@ with left_col:
             google_maps_embed = generate_google_maps_embed(start_place, end_place)
             with right_col:
                 map_placeholder.markdown(google_maps_embed, unsafe_allow_html=True)
+
             prompt = generate_itinerary(start_place, end_place, must_see, max_km, budget,
                                num_days, start_date, selected_pois, selected_accommodation)
 
             # write the prompt to the Clipboard
-
-
 
 # Open the clipboard
 # if wx.TheClipboard.Open():
