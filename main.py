@@ -158,19 +158,18 @@ with left_col:
 
             prompt = generate_itinerary(start_place, end_place, must_see, max_km, budget,
                                num_days, start_date, selected_pois, selected_accommodation)
-            st.write(prompt)
+            # st.write(prompt)
 
-            # write the prompt to the Clipboard
 
-# Create a button to copy the text to the clipboard
-if st.button("Copy to Clipboard"):
-    # Encode the text as bytes
-    text_bytes = prompt.encode("utf-8")
-    # Create a base64-encoded data URL
-    data_url = f"data:text/plain;base64,{base64.b64encode(text_bytes).decode('utf-8')}"
-    # Create an HTML element with the data URL
-    html_element = html(f"<a href='{data_url}' download='text.txt' id='download-link'></a>", unsafe_allow_html=True)
-    # Add the HTML element to the Streamlit page
-    st.markdown(html_element, unsafe_allow_html=True)
-    # Click the HTML element to download the text
-    html_element._events["click"] = True
+            # Create a button to copy the text to the clipboard
+            if st.button("Copy to Clipboard"):
+                # Encode the text as bytes
+                text_bytes = prompt.encode("utf-8")
+                # Create a base64-encoded data URL
+                data_url = f"data:text/plain;base64,{base64.b64encode(text_bytes).decode('utf-8')}"
+                # Create an HTML element with the data URL
+                html_element = html(f"<a href='{data_url}' download='text.txt' id='download-link'></a>", unsafe_allow_html=True)
+                # Add the HTML element to the Streamlit page
+                st.markdown(html_element, unsafe_allow_html=True)
+                # Click the HTML element to download the text
+                html_element._events["click"] = True
