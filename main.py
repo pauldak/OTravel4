@@ -1,22 +1,15 @@
 import streamlit as st
-
-text = "Hello World"
-
-if st.button('Copy to Clipboard'):
-
-    # JavaScript to copy text
-    js = f"""
-    navigator.clipboard.writeText('{text}').catch(error => {{
-      console.error(error);
-      return false; 
-    }});    
-  """
-
-    # Execute JavaScript
-    result = st.script(js)
-
-    # Notify success or failure
-    if result:
-        st.success('Text copied to clipboard')
-    else:
-        st.error('Unable to copy text')
+# Triggered by a button click
+if st.button('Click to copy "Hello, World!" to clipboard'):
+# JavaScript to copy text
+    js_script = """
+    navigator.clipboard.writeText('Hello, World!').then(function() {
+    /* Success */
+    alert('Text copied successfully!');
+    }, function(err) {
+    /* Error */
+    console.error('Could not copy text: ', err);
+    });
+    """
+# Display the JavaScript
+st.code(js_script, language='javascript')
