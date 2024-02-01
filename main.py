@@ -1,7 +1,7 @@
 
 import streamlit as st
 
-import wx
+# import wx
 
 # Function to generate the clipboard copy script
 
@@ -161,8 +161,8 @@ with left_col:
             # write the prompt to the Clipboard
 
 # Open the clipboard
-if wx.TheClipboard.Open():
+# if wx.TheClipboard.Open():
     # Set the data object to the clipboard
-    wx.TheClipboard.SetData(wx.TextDataObject(prompt))
+#    wx.TheClipboard.SetData(wx.TextDataObject(prompt))
     # Close the clipboard
-    wx.TheClipboard.Close()
+#    wx.TheClipboard.Close()
