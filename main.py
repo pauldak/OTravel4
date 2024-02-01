@@ -150,7 +150,17 @@ with left_col:
                                               num_days, start_date, selected_pois, selected_accommodation)
             # st.write(prompt)
 
-            hosted_html_file = "https://everydayswag.org/files/copy.html"
-            iframe_url = f"{hosted_html_file}?copy={prompt}"
+            if st.button('Copy text to clipboard'):
+                # JavaScript to copy the text
+                js = f"""<script>
+                navigator.clipboard.writeText('{prompt}').then(function() {{
+                    /* Clipboard successfully set */
+                    alert('Text copied to clipboard');
+                }}, function() {{
+                    /* Clipboard write failed */
+                    alert('Failed to copy text to clipboard');
+                }});
+                </script>"""
 
-            st.markdown(f'<iframe style="overflow: hidden;" src="{iframe_url}"></iframe>', unsafe_allow_html=True)
+                # Render the JavaScript
+                st.markdown(js, unsafe_allow_html=True)
