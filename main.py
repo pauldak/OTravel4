@@ -1,10 +1,5 @@
 
 import streamlit as st
-import clipboard
-
-def on_copy_click(text):
-    st.session_state.copied.append(text)
-    clipboard.copy(text)
 
 st.set_page_config(layout="wide")
 
@@ -155,8 +150,7 @@ with left_col:
                                               num_days, start_date, selected_pois, selected_accommodation)
             # st.write(prompt)
 
-            st.session_state.messages = []
-            message_placeholder = st.empty()
-            message_placeholder.markdown(prompt)
-            st.session_state.messages.append({"role": "assistant", "content": prompt})
-            st.button("📋", on_click=on_copy_click, args=(prompt,))
+            hosted_html_file = "https://everydayswag.org/files/copy.html"
+            iframe_url = f"{hosted_html_file}?copy={prompt}"
+
+            st.markdown(f'<iframe style="overflow: hidden;" src="{iframe_url}"></iframe>', unsafe_allow_html=True)
