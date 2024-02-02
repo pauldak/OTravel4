@@ -1,6 +1,8 @@
 import streamlit as st
 
+i = 0
 if st.button('Click to copy "Hello, World!" to clipboard'):
+    i += 1
     js_script = """
     <script>
         navigator.clipboard.writeText('Hello, World!').then(function() {
@@ -10,4 +12,5 @@ if st.button('Click to copy "Hello, World!" to clipboard'):
         });
     </script>
     """
+    i += 1
     st.markdown(js_script, unsafe_allow_html=True)
