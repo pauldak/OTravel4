@@ -1,8 +1,9 @@
 import streamlit as st
+import time
 
-i = 0
+
 if st.button('Click to copy "Hello, World!" to clipboard'):
-    i += 1
+
     js_script = """
     <script>
         navigator.clipboard.writeText('Hello, World!').then(function() {
@@ -12,5 +13,6 @@ if st.button('Click to copy "Hello, World!" to clipboard'):
         });
     </script>
     """
-    i += 1
+    time.sleep(10)  # delays for 10 seconds
     st.markdown(js_script, unsafe_allow_html=True)
+    time.sleep(10)  # delays for 10 seconds
