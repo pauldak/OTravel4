@@ -9,5 +9,6 @@ def main():
     #you can place your path instead
     Path = f'''{prompt}'''
     st.code(Path, language="python")
-    st.markdown("Now you get option to copy")
+    st.markdown("Now when you get back to the GPTs-bot you have to paste it (Ctrl-v) ", unsafe_allow_html=True)
+
 if __name__ == "__main__":main()
