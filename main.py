@@ -6,19 +6,18 @@ def main():
               "vncvn c v  vc vc  vccv cv fgg f gfgfg "
               "this is a new code")
 
+    input_width = 400  # Adjust the width as needed
 
-    st.set_page_config(page_title="The Ramsey Highlights", layout="wide")
-    st.markdown("""
-        <style>
-        [data-testid="stSidebar"] [aria-expanded="true"] > div:first-child {
-            width: 400px;
-        }
-        [data-testid="stSidebar"] [aria-expanded="false"] > div:first-child {
-            width: 400px;
-            margin-left: -400px;
-        }
-        </style>
-    """, unsafe_allow_html=True)
+    # Apply custom CSS to set the width of the input fields
+
+    st.markdown(
+        f"""
+            <style>
+                .stTextInput, .stNumberInput, .stDateInput, .stMultiselect {{ width: {input_width}px; }}
+            </style>
+            """,
+        unsafe_allow_html=True,
+    )
 
     #you can place your path instead
     Path = f'''{prompt}'''
