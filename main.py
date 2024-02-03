@@ -1,8 +1,9 @@
 import streamlit as st
-import pyperclip
-
-a=st.text_area('Type in the text_area and click copy')
-
-if st.button('Copy'):
-    pyperclip.copy(a)
-    st.success('Text copied successfully!')
+def main():
+    st.title("Copy Paste in streamlit")
+    pathinput = st.text_input("Enter your Path:")
+    #you can place your path instead
+    Path = f'''{pathinput}'''
+    st.code(Path, language="python")
+    st.markdown("Now you get option to copy")
+if __name__ == "__main__":main()
