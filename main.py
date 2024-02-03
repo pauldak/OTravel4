@@ -1,8 +1,9 @@
 import streamlit as st
 def main():
     st.title("Copy Paste in streamlit")
-    pathinput = st.text_input("Enter your Path:")
-    pathinput += "Just test clipboard"
+    prompt = "I just want to test it"
+    pathinput = st.text_input(prompt)
+    
     #you can place your path instead
     Path = f'''{pathinput}'''
     st.code(Path, language="python")
